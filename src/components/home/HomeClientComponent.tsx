@@ -60,7 +60,7 @@ export default function HomeClientComponent() {
   };
 */
   return (
-    <main className="min-h-screen bg-white flex flex-col justify-between">
+    <main className="min-h-screen bg-white flex flex-col justify-between overflow-hidden">
       <header className="w-full px-6 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-3">
           <Image src={logo} alt="Logo" width={60} height={60} />

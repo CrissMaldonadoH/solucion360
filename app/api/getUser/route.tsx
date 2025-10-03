@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { mssqlConnect } from "../database/connection";
+import { mssql_s360_Connect } from "../database/s360Connnection";
 import { getUsersByEmail } from '../database/queries';
 import { getUserResponseType } from "@/src/types/Types";
 import jwt from "jsonwebtoken";
@@ -13,11 +13,11 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const db = await mssqlConnect();
+    const db = await mssql_s360_Connect();
 
-    // Buscar en esquema 'dbo' primero
-    const user: getUserResponseType = await getUsersByEmail(db, userEmail, "dbo");
-
+    // Buscar en esquema 'S_360' primero
+    const user: getUserResponseType = await getUsersByEmail(db, userEmail, "S_360");
+    console.log(user)
     if(!user.recordset.length){
         return NextResponse.json({
             message:'No se encontró el usuario',
@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
 
   } catch (err: unknown) {
     const knownError = err as {message: string};
+    console.log(knownError)
     return NextResponse.json({
       message:knownError,
     }, {

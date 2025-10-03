@@ -7,7 +7,7 @@ const encoder = new TextEncoder();
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get('auth')?.value;
-
+  
   if (!token) {
     return NextResponse.redirect(new URL('/', req.url));
   }
@@ -15,8 +15,9 @@ export async function middleware(req: NextRequest) {
 
   try {
     const { payload } = await jwtVerify(token, encoder.encode(SECRET_KEY));
+    
 
-    if (typeof payload.id !== 'number' || typeof payload.nombre !== 'string' || typeof payload.entidad !== 'string' || typeof payload.correo !== 'string' || typeof payload.perfil !== 'string' || typeof payload.tiempoInactividad !== 'string' || typeof payload.tyc !== 'number') {
+    if (typeof payload.id !== 'number' || typeof payload.nombre !== 'string' || typeof payload.entidad !== 'string' || typeof payload.correo !== 'string' || typeof payload.perfil !== 'string' || typeof payload.tiempoInactividad !== 'number' || typeof payload.tyc !== 'number') {
       return NextResponse.redirect(new URL('/', req.url));
     }
 

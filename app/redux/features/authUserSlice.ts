@@ -14,7 +14,7 @@ export const fetchUserByEmail = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Failed to fetch user info");
       }
-
+      
       const data = await response.json();
       Cookies.set("auth", data.token, { expires: 1 });
       return data.token; 
