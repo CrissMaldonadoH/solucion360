@@ -1,4 +1,4 @@
-import { requestOptions, fetchDataProps, fetchDataResponse } from "../types/Types";
+import { requestOptions, fetchDataProps, fetchDataResponse, FilterParamsStructure } from "../types/Types";
 
 export const useHandleFetch = () =>{
 
@@ -11,14 +11,25 @@ export const useHandleFetch = () =>{
         if(fuente) BASE_URL +=  `fuente=${fuente}&`
 
         for (const param in params) {
-            if(param == 'groupby') BASE_URL += `$groupby=${params[param]}&`;
-            if(param == 'select') BASE_URL += `$select=${params[param]}&`;
-            if(param == 'filter'){
+            const value = params[param];
+
+            if (param === 'groupby' && typeof value === 'string') {
+                BASE_URL += `$groupby=${value}&`;
+            }
+
+            if (param === 'select' && typeof value === 'string') {
+                BASE_URL += `$select=${value}&`;
+            }
+
+            if (param === 'filter' && typeof value === 'object' && value !== null) {
                 BASE_URL += `$filter=`;
-                for(const filter in params[param]){
-                    BASE_URL += `${filter}=${params[param][filter]}&`;
+                const filterObj = value as FilterParamsStructure;
+                for (const filterKey in filterObj) {
+                    BASE_URL += `${filterKey}=${filterObj[filterKey]}&`;
                 }
             }
+
+            // Agrega aquí otros posibles params si es necesario (start_index, count, etc.)
         }
         
         const requestOptions:requestOptions = {

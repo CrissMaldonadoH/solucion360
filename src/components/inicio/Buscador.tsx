@@ -5,7 +5,7 @@ import { FormEvent } from "react";
 
 export default function Buscador() {
     const [documentNumber, setDocumentNumber] = useState<string>("");
-    const [typeView, setTypeView] = useState<string>("");
+    const [typeView] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [documentType, setDocumentType] = useState<number>(0);
     const [documentTypes] = useState<{codigo:number, campo:string}[]>([]);
