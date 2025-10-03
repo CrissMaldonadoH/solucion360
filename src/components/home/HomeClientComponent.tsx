@@ -68,7 +68,7 @@ export default function HomeClientComponent() {
         <div>
           <button
             onClick={handleLogin}
-            className="bg-main text-white px-5 py-2 rounded-md hover:bg-main/80 transition duration-200"
+            className="bg-main text-white px-5 py-2 rounded-md hover:bg-main/80 transition duration-200 cursor-pointer"
           >
             {
               loading ?
@@ -103,7 +103,7 @@ export default function HomeClientComponent() {
           <div className="flex justify-center md:justify-start">
             <button
               onClick={handleLogin}
-              className="bg-main text-white px-6 py-3 rounded-md hover:bg-main/80 transition duration-200 text-lg"
+              className="bg-main text-white px-6 py-3 rounded-md hover:bg-main/80 transition duration-200 text-lg cursor-pointer"
             >
               {
                 loading ?
