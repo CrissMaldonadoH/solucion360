@@ -112,7 +112,6 @@ export default function InicioClientComponent({getAllDocuments, getCitizenInform
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[identityData])
 
-
   return (
     <div
       className="w-full h-screen transition-all duration-500 ease-in-out transform animate-fadeUp"
