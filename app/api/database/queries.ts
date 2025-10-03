@@ -23,12 +23,14 @@ export const getUsersByEmail = async(db:any, userEmail:string, schema:string) =>
 export const getAllUsers = async (db:any, schema:string) =>{ // eslint-disable-line @typescript-eslint/no-explicit-any
     const query = `
     SELECT
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.id as id,
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.nombre as nombre,
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.entidad as entidad,
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.correo as correo,
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.perfil as perfil,
-        [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}.accesos as accesos
+        id as id,
+        nombre as nombre,
+        entidad as entidad,
+        correo as correo,
+        perfil as perfil,
+        tiempoInactividad as tiempoInactividad,
+        tyc as tyc,
+        accesos as accesos
     FROM [${process.env.NEXT_PUBLIC_DB_NAME}].${schema}.${tables.s360_access}`
     console.log(query)
     return await db.query(query)
